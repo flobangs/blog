@@ -1,0 +1,25 @@
+server:
+  servlet:
+    encoding:
+      charset: utf-8
+      force: true
+  port: 8081
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  datasource:
+    url: jdbc:mariadb://${rds.hostname}:${rds.port}/${rds.db.name}?allowPublicKeyRetrieval=true&useSSL=false
+    driver-class-name: org.mariadb.jdbc.Driver # 마리아 DB gradle이 없어서 오류 발생함
+    username: ${rds.username}
+    password: ${rds.password}
+  jpa:
+    hibernate:
+      ddl-auto: none
+      default_batch_fetch_size: 100 # in query
+    open-in-view: false
+logging:
+  level:
+    '[com.example.blog2]': INFO # INFO 레벨
