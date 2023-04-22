@@ -20,7 +20,7 @@ spring:
       enabled: true
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create # DB 작업 시에 none이 아니면 서버가 재실행될 때 날라감
     show-sql: true
     properties:
       hibernate:
