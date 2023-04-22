@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "board_id")
+@Table(name = "board_tb")
 @Getter
 @Entity
 public class Board {
@@ -24,9 +24,10 @@ public class Board {
     private User user;
     private String title;
     @Lob // 4GByte
-    private String contents;
+    private String content;
     @Lob
     // content에 등록된 사진중 하나를 임의로 선정하여 보여준다.
+    private String thumbnail;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
