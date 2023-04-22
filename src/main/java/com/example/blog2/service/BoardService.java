@@ -1,12 +1,18 @@
 package com.example.blog2.service;
 
 import com.example.blog2.dto.board.BoardRequest;
+import com.example.blog2.model.board.Board;
+import com.example.blog2.model.board.BoardQueryRepository;
 import com.example.blog2.model.board.BoardRepository;
 import com.example.blog2.model.user.User;
 import com.example.blog2.model.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -14,6 +20,7 @@ import java.util.Optional;
 public class BoardService {
     private final BoardRepository boardRepository;
     private final UserRepository userRepository;
+    private final BoardQueryRepository boardQueryRepository;
 
     public void 글쓰기(BoardRequest.SaveInDTO saveInDTO, Long userId) {
 
@@ -29,5 +36,11 @@ public class BoardService {
         } catch (Exception e) {
             throw new RuntimeException("글쓰기 실패 : " + e.getMessage());
         }
+    }
+
+    // CSR은 DTO로 변경해서 돌려줘야 한다.
+    @Transactional
+    public Page<Board> 글목록보기(Pageable pageable) {
+        return boardQueryRepository.findAll(pageable);
     }
 }
