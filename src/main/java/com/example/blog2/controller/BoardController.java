@@ -19,5 +19,9 @@ public class BoardController {
         return "board/main";
     }
 
+    @GetMapping("/s/board/saveForm")
+    public String saveForm() {
+        return "board/saveForm";
+    }
 
 }
