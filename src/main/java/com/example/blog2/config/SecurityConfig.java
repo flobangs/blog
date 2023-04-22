@@ -29,12 +29,20 @@ public class SecurityConfig {
         // 2. Form 로그인 설정
         http.formLogin()
                 .loginPage("/loginForm")
+                // localhost:8080/login 호출 시
+                // MyUserDetailsService가 호출 된다.
+                // username으로 user 영속화한다.
+                // post / x-www 호출
                 .loginProcessingUrl("/login")
                 .successHandler((request, response, authentication) -> {
                     log.debug("디버그 : 로그인 성공");
+                    // 로그인이 성공하면 UserService가 실행됨
+
+                    response.sendRedirect("/");
                 })
                 .failureHandler((request, response, exception) -> {
-                    log.debug("디버그 : 로그인 실패" + exception.getMessage());
+                    log.debug("디버그 : 로그인 실패 - " + exception.getMessage());
+                    response.sendRedirect("/loginForm");
                 });
 
         // 3. 인증, 권한 필터 설정
