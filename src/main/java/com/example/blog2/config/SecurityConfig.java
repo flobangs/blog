@@ -18,9 +18,13 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // 1. CSRF 해제 (개발할 때는 해제 - POST 맨을 사용할 수 없다)
+        // 1. CSRF 해제 (개발할 때는 |해제 - POST 맨을 사용할 수 없다)
         // 필요할 때 지우면 된다.
         http.csrf().disable();
+
+        // >> frame option 해제 (시큐리티 h2-console) 접속 허용을 위해 사용)
+        http:
+        http.headers().frameOptions().disable();
 
         // 2. Form 로그인 설정
         http.formLogin()
