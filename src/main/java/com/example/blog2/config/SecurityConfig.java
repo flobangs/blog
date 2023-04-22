@@ -1,11 +1,14 @@
 package com.example.blog2.config;
 
+import com.example.blog2.core.auth.MyUserDetails;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.servlet.http.HttpSession;
 
 @Slf4j
 @Configuration
@@ -37,6 +40,11 @@ public class SecurityConfig {
                 .successHandler((request, response, authentication) -> {
                     log.debug("디버그 : 로그인 성공");
                     // 로그인이 성공하면 UserService가 실행됨
+
+                    // view에서 아용하려고 사용한다.
+                    MyUserDetails myUserDetails = (MyUserDetails)authentication.getPrincipal();
+                    HttpSession session = request.getSession();
+                    session.setAttribute("sessionUser", myUserDetails.getUser());
 
                     response.sendRedirect("/");
                 })
