@@ -8,12 +8,9 @@ import com.example.blog2.model.user.User;
 import com.example.blog2.model.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
+
 
 @RequiredArgsConstructor
 @Service
@@ -39,8 +36,9 @@ public class BoardService {
     }
 
     // CSR은 DTO로 변경해서 돌려줘야 한다.
+    // check point
     @Transactional
-    public Page<Board> 글목록보기(Pageable pageable) {
-        return boardQueryRepository.findAll(pageable);
+    public Page<Board> 글목록보기(int page) {
+        return boardQueryRepository.findAll(page);
     }
 }

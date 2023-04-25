@@ -2,8 +2,6 @@ package com.example.blog2.model.board;
 
 import com.example.blog2.model.user.User;
 import lombok.*;
-import net.bytebuddy.asm.Advice;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -41,3 +39,4 @@ public class Board {
         this.updatedAt = LocalDateTime.now();
     }
 }
+

@@ -3,3 +3,32 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* 공통 스타일 */
+.prev-next-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* 이전 버튼 스타일 */
+.prev-btn {
+    background-color: #555;
+}
+
+/* 다음 버튼 스타일 */
+.next-btn {
+    background-color: #f39c12;
+}
+
+/* 마우스 오버 시 스타일 */
+.prev-next-btn:hover {
+    background-color: #0056b3;
+}

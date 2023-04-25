@@ -29,13 +29,11 @@ public class BoardController {
     // 하지만 여기서는 복수를 붙이지 않는다.
     @GetMapping({"/", "/board"})
     public String main(@RequestParam(defaultValue = "0")int page, Model model) {
-        PageRequest pageRequest =
-                PageRequest.of(page, 8, Sort.by("id").descending());
         // 현재는 영속화 되어 있지 않다.
         // boardService()에서 findAll()을 했지만 .yml의 open-in-view:false로 되어있기 때문에
         // controller로 돌아오는 순간 세션과 상관없게 되어 비영속화 된다.
         // open-in-view:true로 하면 여기서 boardPG는 영속화 된다.
-        Page<Board> boardPG = boardService.글목록보기(pageRequest);
+        Page<Board> boardPG = boardService.글목록보기(page);
         model.addAttribute("boardPG", boardPG);
         return "board/main";
     }
@@ -56,3 +54,4 @@ public class BoardController {
     }
 
 }
+
